@@ -9,7 +9,7 @@ document.getElementById("submit").addEventListener("click", function () {
   // check if the username and password are correct
   if (userValue === "admin" && passwordValue === "admin123") {
     alert("Loging successFull");
-    window.location.assign("./home/home.html");
+    window.location.assign("../homepage/homepage.html");
   } else {
     alert("Loging Failed");
     return;
