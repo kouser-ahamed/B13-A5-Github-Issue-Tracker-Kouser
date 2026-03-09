@@ -190,16 +190,28 @@ const renderDetails = (info) => {
       </p>
     </div>
 
-    <div class="bg-slate-50 p-6 flex justify-between items-center">
-      <div>
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Assignee:</p>
-        <p class="font-bold text-slate-800">${info.author}</p>
-      </div>
-      <div class="text-right">
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Priority:</p>
-        <span class="px-4 py-1 bg-red-500 text-white text-xs font-bold rounded-full">${info.priority}</span>
-      </div>
-    </div>
+  <div class="bg-slate-50 p-6 flex justify-between items-center">
+  <div>
+    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Assignee:</p>
+    <p class="font-bold text-slate-800">${info.author}</p>
+  </div>
+
+  <div class="text-right">
+    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Priority:</p>
+
+    <span class="px-4 py-1 text-white text-xs font-bold rounded-full
+    ${
+      info.priority === "high"
+        ? "bg-red-500"
+        : info.priority === "medium"
+          ? "bg-yellow-500"
+          : "bg-green-500"
+    }">
+      ${info.priority.toUpperCase()}
+    </span>
+
+  </div>
+</div>
 
   `;
 };
