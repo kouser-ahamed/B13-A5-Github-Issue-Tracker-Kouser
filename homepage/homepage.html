@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
     <!-- Favicon link -->
     <link rel="shortcut icon" href="../assets/github-logo.png" type="image/x-icon">
 
-   
+
     <!-- Google Fonts -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,51 +23,65 @@
         rel="stylesheet">
 
 </head>
+
 <body>
 
-     <!-- Navigation Bar -->
+    <!-- Navigation Bar -->
 
-    <nav class="w-11/12 mx-auto ">
-      <div
-        class="bg-white border-b-3 border-gray-100 px-4 py-3 flex flex-wrap items-center justify-between"
-      >
-        <div class="flex items-center gap-2 p-3">
+    <nav class="w-full mx-auto px-4 sm:px-8">
+        <div class="bg-white border-b-3 border-gray-100 px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center gap-2 p-3">
 
-          <div class="w-8 h-8 flex items-center justify-center">
+                <div class="w-8 h-8 flex items-center justify-center">
 
-            <img src="../assets/github-logo.png" alt="GitHub Logo" />
+                    <img src="../assets/github-logo.png" alt="GitHub Logo" />
 
-          </div>
+                </div>
 
-          <span class="font-bold text-slate-800 text-lg tracking-tight"
+                <span class="font-bold text-slate-800 text-lg tracking-tight">
+                    GitHub Issues Tracker</span>
 
-            >GitHub Issues Tracker</span>
+            </div>
 
-        </div>
+            <div class="flex items-center gap-4">
 
-        <div class="flex items-center gap-4">
+                <div class="sm:block">
 
-          <div class="sm:block">
+                    <input id="input-search" type="text" placeholder="Search issues..."
+                        class="bg-slate-50 border max-sm:w-[80%] border-gray-200 text-sm rounded-md py-2 pl-5 pr-4 w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all" />
 
-            <input
-            id="input-search" type="text" placeholder="Search issues..."
+                </div>
 
-              class="bg-slate-50 border max-sm:w-[80%] border-gray-200 text-sm rounded-md py-2 pl-5 pr-4 w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"/>
+                <button
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-md transition-colors">
 
-          </div>
+                    +New Issue
+                </button>
 
-          <button
-         
-            class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-md transition-colors">
-
-            +New Issue
-          </button>
+            </div>
 
         </div>
 
-      </div>
-      
     </nav>
-    
+
+
+    <!-- Main Content BTN and filter section -->
+
+    <div class="max-w-7xl mx-auto px-4 py-6 space-y-4">
+
+        <div class="bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+            <div class="flex gap-2 p-4">
+                
+                <button id="btn-all" class="btn btn-sm bg-[#6322FF]  text-white border-none px-8 normal-case">All</button>
+                <button id="btn-open" class="btn btn-sm btn-ghost text-gray-500  px-8 border border-gray-100 normal-case">Open</button>
+                <button id="btn-closed" class="btn btn-sm btn-ghost text-gray-500  px-8 border border-gray-100 normal-case">Closed</button>
+
+            </div>
+        </div>
+
+
+    </div>
+
 </body>
+
 </html>
