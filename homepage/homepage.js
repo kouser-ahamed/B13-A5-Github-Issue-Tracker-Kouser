@@ -154,9 +154,14 @@ const renderDetails = (info) => {
  <div class="p-6">
       <h2 class="text-2xl font-bold text-slate-800">${info.title}</h2>
       <div class="flex gap-2 mt-2 items-center">
-        <span class="px-3 py-1 font-bold rounded-full text-white bg-green-500">${info.status}</span>
-        <p class="text-sm text-slate-500"> ${info.status} by ${info.assignee} : ${formattedDate}</p>
-      </div>
+  <span class="px-3 py-1 font-bold rounded-full text-white ${info.status === "open" ? "bg-green-500" : "bg-purple-500"}">
+    ${info.status === "open" ? "Opened" : "Closed"}
+  </span>
+
+  <p class="text-sm text-slate-500">
+    • ${info.status === "open" ? "opened" : "closed"} by ${info.assignee} • ${formattedDate}
+  </p>
+</div>
       
           <div class="flex flex-wrap gap-2  mt-4">
           ${info.labels
