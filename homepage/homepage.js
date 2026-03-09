@@ -15,6 +15,13 @@ const renderCards = (items) => {
   document.getElementById("quntti").innerText = items.length;
 
   items.forEach((item) => {
+    const updatedDate = new Date(item.updatedAt);
+    const formattedDate = `${updatedDate.getDate().toString().padStart(2, "0")}/${(
+      updatedDate.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}/${updatedDate.getFullYear()}`;
+
     const wrapper = document.createElement("div");
     wrapper.innerHTML = `
       <div onclick="showIssueDetails(${item.id})" class="bg-white rounded-xl border border-gray-100 h-[300px] shadow-sm hover:shadow-lg transition-shadow overflow-hidden">
@@ -68,7 +75,7 @@ const renderCards = (items) => {
 
             <div class="pt-4 border-t border-gray-200 flex flex-col gap-1">
                 <p class="text-[11px] text-slate-400 font-medium italic">#${item.id} by ${item.author}</p>
-                <p class="text-[11px] text-slate-400">${item.updatedAt}</p>
+                <p class="text-[11px] text-slate-400">${formattedDate}</p>
             </div>
         </div>
       </div>
@@ -135,24 +142,39 @@ const showIssueDetails = async (issueId) => {
 const renderDetails = (info) => {
   const detailBox = document.getElementById("detils-continer");
 
+  const updatedDate = new Date(info.updatedAt);
+  const formattedDate = `${updatedDate.getDate().toString().padStart(2, "0")}/${(
+    updatedDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}/${updatedDate.getFullYear()}`;
+
   detailBox.innerHTML = `
   
  <div class="p-6">
       <h2 class="text-2xl font-bold text-slate-800">${info.title}</h2>
       <div class="flex gap-2 mt-2 items-center">
         <span class="px-3 py-1 font-bold rounded-full text-white bg-green-500">${info.status}</span>
-        <p class="text-sm text-slate-500"> ${info.status} by ${info.assignee} : ${info.updatedAt} 22/12/2024</p>
+        <p class="text-sm text-slate-500"> ${info.status} by ${info.assignee} : ${formattedDate}</p>
       </div>
       
           <div class="flex flex-wrap gap-2  mt-4">
           ${info.labels
-            .map(
-              (tag) => `
-                 <span class="badge badge-outline bg-[#FECACA] border-red-200 text-red-400 text-[10px] font-bold px-2 py-1 uppercase">
-               ${tag}
-               </span> 
-  `,
-            )
+            .map((tag, index) => {
+              if (index === 0) {
+                return `
+        <span class="badge badge-outline bg-[#FECACA] border-red-200 text-red-400 text-[10px] font-bold px-2 py-1 uppercase">
+          <i class="fa-solid fa-bug"></i> ${tag}
+        </span>
+      `;
+              } else {
+                return `
+        <span class="badge badge-outline bg-[#FFF8DB] border-red-200 text-[#D97706] text-[10px] font-bold px-2 py-1 uppercase">
+          <i class="fa-solid fa-life-ring"></i> ${tag}
+        </span>
+      `;
+              }
+            })
             .join("")}
   </div>
     </div>
