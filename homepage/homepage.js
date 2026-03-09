@@ -51,13 +51,13 @@ const renderCards = (items) => {
              .map((tag, index) => {
                if (index === 0) {
                  return `
-          <span class="badge badge-outline bg-[#FECACA] border-red-200 text-red-400 text-[10px] font-bold px-2 py-1 uppercase">
+          <span class="badge badge-outline bg-[#FECACA] border-red-200 text-red-400 text-[10px] font-bold px-2 py-1 uppercase"> <i class="fa-solid fa-bug"></i>
             ${tag}
           </span>
         `;
                } else {
                  return `
-          <span class="badge badge-outline bg-[#FFF8DB] border-red-200 text-[#D97706] text-[10px] font-bold px-2 py-1 uppercase">
+          <span class="badge badge-outline bg-[#FFF8DB] border-red-200 text-[#D97706] text-[10px] font-bold px-2 py-1 uppercase"><i class="fa-solid fa-life-ring"></i>
             ${tag}
           </span>
         `;
