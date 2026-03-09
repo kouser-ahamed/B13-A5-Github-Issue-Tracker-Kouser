@@ -73,7 +73,7 @@ btnList.forEach((element) => {
 
 let issueStore = [];
 
-// 
+//
 const loadAllIssues = async () => {
   toggleSpinner(true);
   const response = await fetch(
@@ -111,5 +111,72 @@ const showIssueDetails = async (issueId) => {
 
   document.getElementById("word_modal").showModal();
 };
+// render details in the modal
+const renderDetails = (info) => {
+  const detailBox = document.getElementById("detils-continer");
+
+  detailBox.innerHTML = `
+  
+ <div class="p-6">
+      <h2 class="text-2xl font-bold text-slate-800">${info.title}</h2>
+      <div class="flex gap-2 mt-2 items-center">
+        <span class="px-3 py-1 font-bold rounded-full text-white bg-green-500">${info.status}</span>
+        <p class="text-sm text-slate-500"> ${info.status} by ${info.assignee} : ${info.updatedAt} 22/12/2024</p>
+      </div>
+      
+          <div class="flex flex-wrap gap-2  mt-4">
+          ${info.labels
+            .map(
+              (tag) => `
+                 <span class="badge badge-outline bg-[#FECACA] border-red-200 text-red-400 text-[10px] font-bold px-2 py-1 uppercase">
+               ${tag}
+               </span> 
+  `,
+            )
+            .join("")}
+  </div>
+    </div>
+
+    <div class="px-6 pb-6">
+      <p class="text-slate-600 leading-relaxed">
+        ${info.description}
+      </p>
+    </div>
+
+    <div class="bg-slate-50 p-6 flex justify-between items-center">
+      <div>
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Assignee:</p>
+        <p class="font-bold text-slate-800">${info.assignee}</p>
+      </div>
+      <div class="text-right">
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Priority:</p>
+        <span class="px-4 py-1 bg-red-500 text-white text-xs font-bold rounded-full">${info.priority}</span>
+      </div>
+    </div>
+
+  `;
+};
+// search issue by keyword
+const findIssue = async (keyword) => {
+  toggleSpinner(true);
+
+  const response = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${keyword}`,
+  );
+
+  const result = await response.json();
+
+  renderCards(result.data);
+};
+// search by enter key
+document.getElementById("input-search").addEventListener("keyup", (event) => {
+  const text = event.target.value;
+
+  if (text === "") {
+    renderCards(issueStore);
+  } else {
+    findIssue(text);
+  }
+});
 
 loadAllIssues();
